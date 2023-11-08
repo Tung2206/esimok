@@ -1,0 +1,25 @@
+.author-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.author-box .author-avatar {
+  margin-right: 15px;
+}
+.author-box .author-avatar img {
+  width: 60px;
+  height: 60px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 100%;
+}
+.author-box .author-title {
+  font-size: 18px;
+  margin-bottom: 0px;
+  line-height: 24px;
+}
+.author-box .author-post-time {
+  font-size: 14px;
+  font-weight: 500;
+}/*# sourceMappingURL=author.css.map */

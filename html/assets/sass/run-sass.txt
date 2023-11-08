@@ -1,0 +1,6 @@
+sass --no-source-map --watch style.scss:../css/00-components/style.css --style compressed
+sass --no-source-map --watch header.scss:../css/00-components/header.css --style compressed
+sass --no-source-map --watch footer.scss:../css/00-components/footer.css --style compressed
+sass --no-source-map --watch home.scss:../css/00-components/home.css --style compressed
+sass --no-source-map --watch country.scss:../css/00-components/country.css --style compressed
+sass --no-source-map --watch blog.scss:../css/00-components/blog.css --style compressed

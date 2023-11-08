@@ -1,0 +1,32 @@
+// Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "02-bootstrap/functions";
+
+// Include remainder of required Bootstrap stylesheets
+@import "02-bootstrap/variables";
+@import "02-bootstrap/mixins";
+
+// Include any optional Bootstrap CSS as needed
+@import "02-bootstrap/root";
+@import "02-bootstrap/utilities";
+@import "02-bootstrap/reboot";
+@import "02-bootstrap/type";
+@import "02-bootstrap/images";
+@import "02-bootstrap/containers";
+@import "02-bootstrap/grid";
+@import "02-bootstrap/forms";
+@import "02-bootstrap/tables";
+@import "02-bootstrap/buttons";
+@import "02-bootstrap/dropdown";
+@import "02-bootstrap/nav";
+@import "02-bootstrap/navbar";
+@import "02-bootstrap/modal";
+@import "02-bootstrap/offcanvas";
+@import "02-bootstrap/close";
+@import "02-bootstrap/breadcrumb";
+@import "02-bootstrap/card";
+@import "02-bootstrap/helpers";
+@import "02-bootstrap/transitions";
+@import "02-bootstrap/spinners";
+
+// Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "02-bootstrap/utilities/api";

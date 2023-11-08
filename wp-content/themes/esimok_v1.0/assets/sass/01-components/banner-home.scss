@@ -1,0 +1,64 @@
+.section1 {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: 647px;
+    margin-bottom: 90px;
+    background-image: url(../../images/background-home.png);
+
+    @media (max-width:767px) {
+        min-height: 380px;
+        margin-bottom: 50px;
+    }
+
+    .esim-setion1 {
+        max-width: 806px;
+        margin: 0 auto;
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 46px;
+
+            @media (max-width:767px) {
+                font-size: 18px;
+                line-height: 30px;
+            }
+        }
+
+        form {
+            padding: 8px 16px;
+            border-radius: 12px;
+            background: #FFF;
+
+            input {
+                width: 100%;
+                padding: 12px 16px 12px 32px;
+                color: #389E0D;
+                font-size: 16px;
+                font-weight: 500;
+                border: 0px;
+                outline: none;
+            }
+
+            input::-webkit-input-placeholder {
+                color: #389E0D;
+            }
+
+            input:-moz-placeholder {
+                color: #389E0D;
+            }
+
+            svg {
+                width: auto;
+                position: absolute;
+                top: 50%;
+                cursor: pointer;
+                transform: translateY(-50%);
+            }
+        }
+    }
+}

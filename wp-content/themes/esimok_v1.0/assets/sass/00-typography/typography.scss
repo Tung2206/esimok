@@ -1,0 +1,175 @@
+:root {
+    --primary: #4600B9;
+    --secondary: #0094FF;
+    --heading: #000000;
+    --text: #222222;
+    --background: #ffffff;
+    --border: #F5F5F8;
+    --white: #ffffff;
+    --font-family: 'Inter', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    --bs-gutter-x: 1.875rem;
+    --bs-gutter-y: 0;
+}
+.relative {
+    position: relative;
+}
+.container {
+    max-width: 1200px;
+}
+a{
+    text-decoration: none !important;
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 24px;
+    font-family: var(--font-family);
+    background-color: var(--background);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading-font {
+    font-weight: 700;
+    color: var(--heading);
+    font-family: var(--font-family);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-rendering: optimizeSpeed;
+    margin-bottom: .5em;
+    margin-top: 0;
+}
+a{
+    text-decoration: none;
+}
+.entry-content {
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-top: 1.2em;
+    }
+}
+
+h1 {
+    font-size: 54px;
+    line-height: 60px;
+}
+
+h2 {
+    font-size: 24px;
+    line-height: 32px;
+}
+
+h3 {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+h5 {
+    font-size: 14px;
+}
+
+h6 {
+    font-size: 12px;
+}
+.text {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    
+    .h1,
+    h1 {
+        font-size: 54px;
+        line-height: 60px;
+    }
+    
+    .h2,
+    h2 {
+        font-size: 34px;
+        line-height: 40px;
+    }
+    
+    .h3,
+    h3 {
+        font-size: 28px;
+        line-height: 46px;
+    }
+    
+    .h4,
+    h4 {
+        font-size: 18px;
+    }
+    
+    .h5,
+    h5 {
+        font-size: 16px;
+    }
+    
+    .h6,
+    h6 {
+        font-size: 12px;
+    }
+    
+    @media (max-width: 1024px) {
+        h1 {
+            font-size: 44px;
+            line-height: 50px;
+        }
+    }
+    
+    @media (max-width: 549px) {
+        h1 {
+            font-size: 34px;
+            line-height: 36px;
+        }
+        
+        h2 {
+            font-size: 28px;
+            line-height: 32px;
+        }
+        
+        h3 {
+            font-size: 24px;
+            line-height: 32px;
+        }
+    }
+}
+
+
+
+
+
+

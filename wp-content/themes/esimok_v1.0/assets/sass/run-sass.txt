@@ -1,0 +1,23 @@
+# Server
+sudo su
+apt install ruby-sass
+sass --no-source-map --watch common.scss:../css/common.css --style compressed
+sass --no-source-map --watch style-admin.scss:../css/style-admin.css --style compressed
+
+# Compiler: folder typography
+sass --no-source-map --watch 00-typography/typography.scss:../css/typography/typography.css --style compressed
+
+# Compiler: folder components
+sass --no-source-map --watch 01-components/owl-customizer.scss:../css/components/owl-customizer.css --style compressed
+sass --no-source-map --watch 01-components/single.scss:../css/components/single.css --style compressed
+sass --no-source-map --watch 01-components/slide-blog.scss:../css/components/slide-blog.css --style compressed
+sass --no-source-map --watch 01-components/author.scss:../css/components/author.css --style compressed
+sass --no-source-map --watch 01-components/table-content.scss:../css/components/table-content.css --style compressed
+sass --no-source-map --watch 01-components/breadcrumb.scss:../css/components/breadcrumb.css --style compressed
+sass --no-source-map --watch 01-components/blog.scss:../css/components/blog.css --style compressed
+sass --no-source-map --watch 01-components/pagination.scss:../css/components/pagination.css --style compressed
+sass --no-source-map --watch 01-components/header.scss:../css/components/header.css --style compressed
+sass --no-source-map --watch 01-components/footer.scss:../css/components/footer.css --style compressed
+sass --no-source-map --watch 01-components/home.scss:../css/components/home.css --style compressed
+sass --no-source-map --watch 01-components/taxonomy-esim.scss:../css/components/taxonomy-esim.css --style compressed
+sass --no-source-map --watch 01-components/banner-home.scss.scss:../css/components/banner-home.css --style compressed

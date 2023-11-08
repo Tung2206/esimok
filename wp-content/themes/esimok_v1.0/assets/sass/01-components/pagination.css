@@ -1,0 +1,27 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin-top: 30px;
+}
+.pagination li {
+  margin-right: 16px;
+  padding: 4px 0;
+}
+.pagination li a {
+  display: block;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+}
+.pagination li:hover a,
+.pagination li a.active-page {
+  background: #389E0D;
+  color: #fff !important;
+}/*# sourceMappingURL=pagination.css.map */

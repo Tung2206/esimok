@@ -1,0 +1,30 @@
+// Include any default variable overrides here
+@import "./../03-settings/variables";
+
+// Include remainder of required Bootstrap stylesheets
+@import "./../02-bootstrap/mixins/breakpoints";
+
+// Add additional custom code here
+.owl-theme .owl-nav [class*="owl-"]:hover {
+    color: $white !important;
+    text-decoration: none;
+    background-color: $primary !important;
+}
+
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+    background: $blue;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+    background: var(--background);
+    border: 1px solid #000000;
+}
+
+.owl-stage {
+    padding-left: 0 !important;
+
+    .owl-item {
+        padding: 0 10px;
+    }
+}

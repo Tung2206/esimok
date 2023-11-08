@@ -1,0 +1,24 @@
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 6px 0;
+  font-size: 14px;
+  font-weight: 400;
+  list-style: none;
+  color: #000;
+  background-color: transparent;
+  margin-bottom: 30px;
+}
+.breadcrumb li a {
+  text-decoration: none !important;
+  color: #000;
+}
+.breadcrumb li:hover a {
+  color: #0094FF;
+}
+.breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  float: left;
+  padding: 0 5px;
+  color: #666;
+  content: var(--bs-breadcrumb-divider, ">");
+}/*# sourceMappingURL=breadcrumb.css.map */

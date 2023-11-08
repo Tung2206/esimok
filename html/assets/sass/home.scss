@@ -1,0 +1,267 @@
+.section1 {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: 647px;
+    margin-bottom: 90px;
+
+    @media (max-width:767px) {
+        min-height: 380px;
+        margin-bottom: 50px;
+    }
+
+    .esim-setion1 {
+        max-width: 806px;
+        margin: 0 auto;
+
+        h1 {
+            margin-bottom: 20px;
+
+            @media (max-width:767px) {
+                font-size: 18px;
+                line-height: 30px;
+            }
+        }
+
+        form {
+            padding: 8px 16px;
+            border-radius: 12px;
+            background: #FFF;
+
+            input {
+                width: 100%;
+                padding: 12px 16px 12px 32px;
+                color: #389E0D;
+                font-size: 16px;
+                font-weight: 500;
+                border: 0px;
+                outline: none;
+            }
+
+            input::-webkit-input-placeholder {
+                color: #389E0D;
+            }
+
+            input:-moz-placeholder {
+                color: #389E0D;
+            }
+
+            svg {
+                width: auto;
+                position: absolute;
+                top: 50%;
+                cursor: pointer;
+                transform: translateY(-50%);
+            }
+        }
+    }
+}
+
+.section2,
+.section3,
+.section4,
+.section5 {
+    margin-bottom: 80px;
+
+    @media (max-width:767px) {
+        margin-bottom: 30px;
+    }
+
+    .esimok-title {
+        margin-bottom: 50px;
+
+        @media (max-width:767px) {
+            margin-bottom: 20px;
+        }
+    }
+
+    .list-Popular {
+        grid-template-columns: repeat(5, 1fr);
+        display: grid;
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+
+        @media (max-width:1024px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width:767px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .item-Popular {
+            padding: 24px;
+            @media (max-width:1200px) {
+                padding: 15px;
+            }
+            
+            @media (max-width:1100px) {
+                padding: 10px;
+            }
+            @media (max-width:767px) {
+                padding: 5px;
+            }
+            a {
+                display: flex;
+                align-items: center;
+
+                img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 100%;
+                    object-fit: cover;
+                    margin-right: 13px;
+                }
+
+                .item-title {
+                    margin: 0;
+                    color: #0C1941;
+                    @media (max-width:1050px){
+                        font-size: 16px;
+                    }
+                }
+
+                &:hover .item-title {
+                    color: #389E0D;
+                }
+            }
+
+        }
+        .item-Popular.hidden {
+            display: none;
+        }
+       
+    }
+
+    .showall {
+        margin-top: 40px;
+        text-decoration: underline;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        @media (max-width:1024px) {
+            margin-top: 20px;
+        }
+        &:hover{
+            color: #389E0D !important;
+        }
+    }
+    
+}
+
+.section6 {
+    margin-bottom: 60px;
+    padding: 50px 0 60px 0;
+    background-color: #FAFAFA;
+    @media (min-width:768px){
+        margin-bottom: 30px;
+    }
+    .blog-content {
+        position: relative;
+        .top-blog-content{
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            .esimok-title {
+                flex:1;
+                margin: 0;
+            }
+            @media (min-width:768px){
+                a{
+                    display: none;
+                }
+            }
+            a{
+                color: #4A4A4A;
+                text-decoration: underline;
+            }
+            @media (max-width:767px) {
+                margin-bottom: 20px;
+            }
+        }
+       
+
+        .description-blog {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+
+            
+
+            p {
+                margin: 0;
+                flex: 1;
+
+                @media (max-width:767px) {
+                    flex: 0 auto;
+                }
+            }
+
+            a {
+                color: #4A4A4A;
+                text-decoration: underline;
+
+                @media (max-width:767px) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .list-blog {
+        overflow: hidden;
+
+        .item-blog {
+            border-radius: 4px;
+            background: #FFF;
+            box-shadow: 0px 3px 16px rgba(0, 0, 0, 0.10);
+
+            .thumb-post {
+                img {
+                    object-fit: cover;
+                    max-height: 284px;
+                }
+            }
+
+            .item-post-text {
+                padding: 20px 22px;
+
+                .post-category {
+                    font-size: 12px;
+                    font-weight: 500;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                }
+
+                .post-title {
+                    h3 {
+                        font-size: 20px;
+                        font-weight: 700;
+                        margin-bottom: 20px;
+
+                        a {
+                            color: #000;
+                        }
+                    }
+
+                    &:hover a {
+                        color: #389e0d;
+                    }
+                }
+
+                .post-excerpt {
+                    font-size: 14px;
+                    font-weight: 400;
+                }
+            }
+
+        }
+    }
+    .owl-stage-outer{
+        padding: 10px 0;
+    }
+}
