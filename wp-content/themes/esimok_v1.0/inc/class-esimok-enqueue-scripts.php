@@ -113,7 +113,8 @@ if (!class_exists('Esimok_Enqueue_Scripts')) :
 			wp_register_style('esimok-third-party-owl-carousel', ESIMOK_THEME_URL . 'assets/css/owl.carousel.min.css', false, '2.3.4', 'all');
 			wp_register_style('esimok-component-banner-home', ESIMOK_THEME_URL . 'assets/css/components/banner-home.css', false, '2.3.4', 'all');
 			wp_register_style('esimok-component-taxonomy-esim', ESIMOK_THEME_URL . 'assets/css/components/taxonomy-esim.css', false, '2.3.4', 'all');
-		
+			wp_register_style('esimok-component-single-esim', ESIMOK_THEME_URL . 'assets/css/components/single-esimok.css', false, '2.3.4', 'all');
+
 			/*
 			 * Regiter: scripts
 			 */

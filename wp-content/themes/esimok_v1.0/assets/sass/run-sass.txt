@@ -20,4 +20,5 @@ sass --no-source-map --watch 01-components/header.scss:../css/components/header.
 sass --no-source-map --watch 01-components/footer.scss:../css/components/footer.css --style compressed
 sass --no-source-map --watch 01-components/home.scss:../css/components/home.css --style compressed
 sass --no-source-map --watch 01-components/taxonomy-esim.scss:../css/components/taxonomy-esim.css --style compressed
-sass --no-source-map --watch 01-components/banner-home.scss.scss:../css/components/banner-home.css --style compressed
+sass --no-source-map --watch 01-components/banner-home.scss:../css/components/banner-home.css --style compressed
+sass --no-source-map --watch 01-components/single-esimok.scss:../css/components/single-esimok.css --style compressed
