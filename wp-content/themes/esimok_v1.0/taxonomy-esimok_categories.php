@@ -17,6 +17,7 @@ $term_id = $queried_object->term_id;
 ?>
 
 <div id="country">
+
     <section class="section1">
         <div class="container">
             <div class="row">
@@ -38,115 +39,406 @@ $term_id = $queried_object->term_id;
             </div>
         </div>
     </section>
+    <!-- end section1 -->
+
     <section class="section2">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <?php
+                    $args = array(
+                        'posts_per_page' => 6,
+                        'post_type' => 'esimok',
+                        'post_status' => 'publish',
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'esimok_categories',
+                                'field' => 'term_id',
+                                'terms' => $term_id,
+                            ),
+                        ),
+                    );
+                    $all_posts = new WP_Query($args);
+                    ?>
                     <div class="owl-carousel owl-theme owl-country">
-                        <article class="item-country">
-                            <a href="../html/blog.html">
-                                <div class="start-top">
-                                    <img src="../html/assets/images/Stars.png" class="img-fluid" alt="POPULAR">
-                                    <h5 class="country-popular">POPULAR #1</h5>
-                                </div>
-                                <div class="item-country-text">
-                                    <div class="price-title">
-                                        $14.00
-                                        <img src="../html/assets/images/mdi_coupon-outline.png" alt="price">
-                                    </div>
-                                    <div class="data-country">
-                                        10GB / 30DAYS
-                                    </div>
-                                </div>
-                                <div class="item-country-logo">
+                        <?php
+                        $i = 1;
+                        $esimok_info = get_field('esimok_thong_tin_goi_cuoc');
+                        $provider = $esimok_info['esimok_provider'];
+                        $plan_name = $esimok_info['esimok_plan_name'];
+                        $validity = $esimok_info['esimok_validity'];
+                        $size = $esimok_info['esimok_size'];
+                        $price = $esimok_info['esimok_price'];
 
-                                    <img src="../html/assets/images/Ubigi.png" class="img-fluid" alt="Ubigi">
-                                    <div class="title-logo">
-                                        <h3>Ubigi</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                        <article class="item-country">
-                            <a href="../html/blog.html">
-                                <div class="start-top">
-                                    <img src="../html/assets/images/Stars.png" class="img-fluid" alt="POPULAR">
-                                    <h5 class="country-popular">POPULAR #2</h5>
-                                </div>
-                                <div class="item-country-text">
-                                    <div class="price-title">
-                                        $14.00
-                                        <img src="../html/assets/images/mdi_coupon-outline.png" alt="price">
-                                    </div>
-                                    <div class="data-country">
-                                        10GB / 30DAYS
-                                    </div>
-                                </div>
-                                <div class="item-country-logo">
-
-                                    <img src="../html/assets/images/MobiMatter.png" class="img-fluid" alt="Ubigi">
-                                    <div class="title-logo">
-                                        <h3>MobiMatter</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                        <article class="item-country">
-                            <a href="../html/blog.html">
-                                <div class="start-top">
-                                    <img src="../html/assets/images/Stars.png" class="img-fluid" alt="POPULAR">
-                                    <h5 class="country-popular">POPULAR #3</h5>
-                                </div>
-                                <div class="item-country-text">
-                                    <div class="price-title">
-                                        $14.00
-                                        <img src="../html/assets/images/mdi_coupon-outline.png" alt="price">
-                                    </div>
-                                    <div class="data-country">
-                                        10GB / 30DAYS
-                                    </div>
-                                </div>
-                                <div class="item-country-logo">
-
-                                    <img src="../html/assets/images/gigago.png" class="img-fluid" alt="Ubigi">
-                                    <div class="title-logo">
-                                        <h3>Gigago</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                        <article class="item-country">
-                            <a href="../html/blog.html">
-                                <div class="start-top">
-                                    <img src="../html/assets/images/Stars.png" class="img-fluid" alt="POPULAR">
-                                    <h5 class="country-popular">POPULAR #3</h5>
-                                </div>
-                                <div class="item-country-text">
-                                    <div class="price-title">
-                                        $14.00
-                                        <img src="../html/assets/images/mdi_coupon-outline.png" alt="price">
-                                    </div>
-                                    <div class="data-country">
-                                        10GB / 30DAYS
-                                    </div>
-                                </div>
-                                <div class="item-country-logo">
-
-                                    <img src="../html/assets/images/gigago.png" class="img-fluid" alt="Ubigi">
-                                    <div class="title-logo">
-                                        <h3>Gigago</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
+                        if ($all_posts->have_posts()) :
+                            while ($all_posts->have_posts()) : $all_posts->the_post();
+                        ?>
+                                <article class="item-country">
+                                    <a href="<?php echo get_the_permalink($post->ID); ?>">
+                                        <div class="start-top">
+                                            <img src="<?php echo ESIMOK_THEME_URL ?>/assets/images/Stars.png" class="img-fluid" alt="POPULAR">
+                                            <h5 class="country-popular">POPULAR <?php echo $i; ?></h5>
+                                        </div>
+                                        <div class="item-country-text">
+                                            <div class="price-title">
+                                                <?php echo $price; ?>
+                                                <img src="<?php echo ESIMOK_THEME_URL ?>/assets/images/mdi_coupon-outline.png" alt="price">
+                                            </div>
+                                            <div class="data-country">
+                                                <?php echo $size; ?> / <?php echo $validity; ?>
+                                            </div>
+                                        </div>
+                                        <div class="item-country-logo">
+                                            <img src="<?php echo $provider; ?>" class="img-fluid" alt="<?php echo $plan_name; ?>">
+                                        </div>
+                                    </a>
+                                </article>
+                        <?php
+                                $i++;
+                            endwhile;
+                        endif;
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
+    <section class="section3">
+        <div class="container">
+            <div class="row">
+                <div class="product-filter products_<?php echo $color ?>">
+                    <div class="list-plan-filter">
+                        <!-- <ul>
+                            <?php
+                            $sorted_product_list = [];
+
+                            $all_plans_added = false;
+
+                            foreach ($product_list as $value) {
+                                $esim_type_value  = !empty($value->esim_type) ? $value->esim_type : '';
+                                $esim_type_label = '';
+
+                                if ($esim_type_value === 'local') {
+                                    $esim_type_label = 'Local';
+                                } elseif ($esim_type_value === 'multi_countries') {
+                                    $esim_type_label = 'Multi Countries';
+                                } else {
+                                    $esim_type_label = 'All Plans';
+                                }
+
+                                if (!$all_plans_added) {
+                                    $sorted_product_list[] = '';
+                                    $all_plans_added = true;
+                                }
+
+                                if ($esim_type_value === '') {
+                                    array_unshift($sorted_product_list, $esim_type_value);
+                                } else {
+                                    $sorted_product_list[] = $esim_type_value;
+                                }
+                            }
+
+                            $sorted_product_list = array_unique($sorted_product_list);
+
+                            foreach ($sorted_product_list as $esim_type_value) {
+                                $esim_type_label = ($esim_type_value === '') ? 'All Plans' : ucwords(str_replace('_', ' ', $esim_type_value));
+                            ?>
+                                <li class="filter-item" data-type="<?php echo $esim_type_value; ?>">
+                                    <?php echo $esim_type_label ?>
+                                </li>
+                            <?php
+                            }
+                            ?>
+                        </ul> -->
+                    </div>
+                    <div class="flex-1"></div>
+                    <div class="list-sort-filter">
+                        <div class="sortby">
+                            <label for="sort">Sort by:</label>
+                            <div class="filter">
+                                <select id="sort">
+                                    <option value="popular">Popular</option>
+                                    <option value="low-to-hight">Low to hight</option>
+                                    <option value="hight-to-low">Hight to low</option>
+                                    <option value="longest-validity">Longest validity</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- -- -->
+                <div id="product-list-container" class="product-row-container">
+                    <div class="offers-list">
+                        <header class="offers-list-header">
+                            <div class="cell"></div>
+                            <div class="offers-list-item cell">
+                                <span>PROVIDER </span>
+                            </div>
+                            <div class="offers-list-item cell">
+                                <span>PLAN NAME</span>
+                            </div>
+                            <div class="offers-list-item cell">
+                                <span></span>
+                            </div>
+                            <div class="offers-list-item cell" style="text-align: center;">
+                                <span>SIZE</span>
+                            </div>
+                            <div class="offers-list-item cell">
+                                <span>VALIDITY</span>
+                            </div>
+                            <div class="offers-list-item cell" style="text-align: center;">
+                                <span>PRICE/GB</span>
+                            </div>
+                            <div class="offers-list-item cell" style="text-align: center;">
+                                <span>PRICE</span>
+                            </div>
+                            <div class="offers-list-item cell">
+                                <span></span>
+                            </div>
+                        </header>
+                        <!-- -- -->
+                        <?php
+                        $args = array(
+                            'posts_per_page' => 6,
+                            'post_type' => 'esimok',
+                            'post_status' => 'publish',
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => 'esimok_categories',
+                                    'field' => 'term_id',
+                                    'terms' => $term_id,
+                                ),
+                            ),
+                        );
+                        $all_posts = new WP_Query($args);
+                        if ($all_posts->have_posts()) :
+                            while ($all_posts->have_posts()) : $all_posts->the_post();
+
+                                $esimok_info = get_field('esimok_thong_tin_goi_cuoc');
+                                $provider = $esimok_info['esimok_provider'];
+                                $plan_name = $esimok_info['esimok_plan_name'];
+                                $size = $esimok_info['esimok_size'];
+                                $validity = $esimok_info['esimok_validity'];
+                                $price_gb = $esimok_info['esimok_price_gb'];
+                                $price = $esimok_info['esimok_price'];
+                                $goi_data = $esimok_info['esimok_goi_data'];
+                                $note = $esimok_info['esimok_note'];
+                        ?>
+                                <a href="<?php echo get_the_permalink($post->ID); ?>" class="offers-list-row product-row no-link" data-type="<?php echo $esim_type_value; ?>">
+                                    <div class="offers-list-item-mobile">
+                                        <article class="product-list-data" data-type="<?php echo $esim_type_value; ?>">
+                                            <div class="logo">
+                                                <?php
+                                                if (!empty($provider)) {
+                                                ?>
+                                                    <img src="<?php echo $provider ?>" alt="<?php echo $plan_name ?>">
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="product-list-content">
+                                                <div class="title-product">
+                                                    <p><?php echo $plan_name ?></p>
+                                                </div>
+                                                <div class="data-validity-product">
+                                                    <div class="data-product">
+                                                        <?php echo $data ?>
+                                                    </div>
+                                                    <div class="validity-product validity">
+                                                        <?php echo $validity ?>
+                                                    </div>
+                                                </div>
+                                                <div class="price-product">
+                                                    <?php echo $price; ?>
+                                                </div>
+                                                <div class="infomation-product">
+                                                    <ul>
+                                                        <?php if (!empty($phone)) : ?>
+                                                            <li class="tooltip-trigger">
+                                                                <div class="list-data">
+                                                                    <div class="info">
+                                                                        <span class="icon-phone"></span>
+                                                                        <div class="name-info-data">
+                                                                            <span class="tooltip-hidden">Phone number available</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                        <?php if (!empty($voice)) : ?>
+                                                            <li class="tooltip-trigger">
+                                                                <div class="list-data">
+                                                                    <div class="info">
+                                                                        <span class="icon-voice"></span>
+                                                                        <div class="name-info-data">
+                                                                            <span class="tooltip-hidden">Outgoing calls included</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                        <?php if (!empty($globe)) : ?>
+                                                            <li class="tooltip-trigger">
+                                                                <div class="list-data">
+                                                                    <div class="info">
+                                                                        <span class="icon-global"></span>
+                                                                        <div class="name-info-data">
+                                                                            <span class="tooltip-hidden"> Low latency</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                        <?php if (!empty($callendar)) : ?>
+                                                            <li class="tooltip-trigger">
+                                                                <div class="list-data">
+                                                                    <div class="info">
+                                                                        <span class="icon-calendar"></span>
+                                                                        <div class="name-info-data">
+                                                                            <span class="tooltip-hidden">Subscription based plan</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                        <?php if (!empty($note)) : ?>
+                                                            <li class="tooltip-trigger">
+                                                                <div class="list-data">
+                                                                    <div class="info">
+                                                                        <span class="icon-note"></span>
+                                                                        <div class="name-info-data">
+                                                                            <span class="tooltip-hidden"><?php echo $note ?></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                    </ul>
+                                                </div>
+                                                <?php if (!empty($note)) : ?>
+                                                    <div class="<?php echo $note ?>">
+                                                        <?php echo $note ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
+                                            <div class="link-product">
+                                                <span class="icon-next"></span>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="offers-list-item custom-product-image">
+                                        <?php
+                                        if (!empty($provider)) {
+                                        ?>
+                                            <img src="<?php echo $provider ?>" alt="<?php echo $plan_name ?>">
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="offers-list-item plane-name">
+                                        <p>
+                                            <?php echo $plan_name ?>
+                                        </p>
+                                    </div>
+                                    <div class="offers-list-item">
+                                        <ul>
+                                            <?php if (!empty($phone)) : ?>
+                                                <li>
+                                                    <div class="list-data">
+                                                        <div class="info-table-data">
+                                                            <span class="icon-phone"></span>
+                                                            <div class="name-info-data">
+                                                                <span>Phone number available</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            <?php endif; ?>
+                                            <?php if (!empty($voice)) : ?>
+                                                <li>
+                                                    <div class="list-data">
+                                                        <div class="info-table-data">
+                                                            <span class="icon-voice"></span>
+                                                            <div class="name-info-data">
+                                                                <span>Outgoing calls included</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            <?php endif; ?>
+                                            <?php if (!empty($globe)) : ?>
+                                                <li>
+                                                    <div class="list-data">
+                                                        <div class="info-table-data">
+                                                            <span class="icon-global"></span>
+                                                            <div class="name-info-data">
+                                                                <span> Low latency</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            <?php endif; ?>
+                                            <?php if (!empty($callendar)) : ?>
+                                                <li>
+                                                    <div class="list-data">
+                                                        <div class="info-table-data">
+                                                            <span class="icon-calendar"></span>
+                                                            <div class="name-info-data">
+                                                                <span>Subscription based plan</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            <?php endif; ?>
+
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="offers-list-item size" style="text-align: center;">
+                                        <?php echo $size ?>
+                                    </div>
+                                    <div class="offers-list-item validity" style="text-align: center;">
+                                        <?php echo $validity ?>
+                                    </div>
+                                    <div class="offers-list-item data-product">
+                                        <p>
+                                            <?php echo $price_gb ?>
+                                        </p>
+                                    </div>
+                                    <div class="offers-list-item price-product" style="text-align: center;">
+                                        <?php
+                                        echo $price;
+                                        ?>
+                                    </div>
+                                    <div class="offers-list-item" style="text-align: center;">
+                                        <span class="icon-next"></span>
+                                    </div>
+                                </a>
+                                <!-- -- -->
+                        <?php
+                            endwhile;
+                        endif;
+                        ?>
+                    </div>
+
+                </div>
+                <button id="load-more-button" class="<?php echo 'color-' . $color; ?>">Load More</button>
+            </div>
+        </div>
+
+    </section>
+
+
 </div>
+
 <?php
 
+wp_enqueue_style('esimok-third-party-owl-carousel');
+
+// Load JS
+wp_enqueue_script('esimok-third-party-owl-carousel');
+wp_enqueue_script('esimok-js-carosel');
 
 get_footer(); ?>

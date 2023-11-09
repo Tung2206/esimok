@@ -40,8 +40,8 @@ define('DB_HOST', 'localhost');
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
 define('WP_DEBUG', true);
-define('WP_DEBUG_DISPLAY', false);
-define('WP_DEBUG_LOG', true);
+// define('WP_DEBUG_DISPLAY', false);
+// define('WP_DEBUG_LOG', true);
 
 /*
  * Không cho phép tự ý cài đặt hoặc upgrade wordpress + themes + plugins
