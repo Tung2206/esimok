@@ -77,7 +77,7 @@ get_template_part(
                                         $esimok_mo_ta = $esimok_item['esimok_mo_ta'];
                                         $esimok_ket_noi = $esimok_item['esimok_ket_noi'];
                                         $esimok_link_popup = $esimok_item['esimok_link_popup'];   
-                                        
+                                        $ten_link_modal = $esimok_item['ten_link_modal'];
                                     ?>
                                     <div class="item-esim">
                                         <div class="item-esim-info">
@@ -111,11 +111,11 @@ get_template_part(
 
                                             <div class="plan">
                                                 <button type="button" class="btn btn-primary plan-details"
-                                                    data-bs-toggle="modal" data-bs-target="#myModal_1">
+                                                    data-bs-toggle="modal" data-bs-target="#<?php echo $esimok_link_popup->post_name;?>">
                                                     Plan details
                                                 </button>
                                                 <!-- The Modal -->
-                                                <div class="modal" id="myModal_1">
+                                                <div class="modal" id="<?php echo $esimok_link_popup->post_name;?>">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
 
@@ -125,75 +125,30 @@ get_template_part(
                                                                 <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal"></button>
                                                             </div>
-
                                                             <!-- Modal body -->
                                                             <div class="modal-body">
-                                                                <h5 class="name-services">Countries covered by this plan
+                                                                <h5 class="name-services">
+                                                                <?php echo $esimok_link_popup->post_content;?>
                                                                 </h5>
+                                                                
                                                                 <div class="list-country">
+                                                                    <?php
+                                                                        $post_id_link_modal = $esimok_link_popup->ID;
+                                                                        $selected_countries = get_field('template_esim_country', $post_id_link_modal); 
+                                                                        
+                                                                        foreach ($selected_countries as $term_link) :
+                                                                            $term = get_term($term_link, 'esimok_categories');
+                                                                            $category_image = get_field('esimok_image_category', 'esimok_categories_' . $term->term_id);
+    
+                                                                    ?>
                                                                     <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/vie.png"
-                                                                                alt="Vietnam">
-                                                                            <h3 class="item-title">Vietnam</h3>
+                                                                        <a href="<?php echo get_term_link($term)?>">
+                                                                            <img src="<?php echo $category_image?>"
+                                                                                alt="<?php echo $term->name;?>">
+                                                                            <h3 class="item-title"><?php echo $term->name;?></h3>
                                                                         </a>
                                                                     </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/jpn.png"
-                                                                                alt="Japan">
-                                                                            <h3 class="item-title">Japan</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/korea.png"
-                                                                                alt="South Korean">
-                                                                            <h3 class="item-title">South Korean</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/china.png"
-                                                                                alt="China">
-                                                                            <h3 class="item-title">China</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/china.png"
-                                                                                alt="China">
-                                                                            <h3 class="item-title">China</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/vie.png"
-                                                                                alt="Vietnam">
-                                                                            <h3 class="item-title">Vietnam</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/jpn.png"
-                                                                                alt="Japan">
-                                                                            <h3 class="item-title">Japan</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/korea.png"
-                                                                                alt="South Korean">
-                                                                            <h3 class="item-title">South Korean</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/china.png"
-                                                                                alt="China">
-                                                                            <h3 class="item-title">China</h3>
-                                                                        </a>
-                                                                    </div>
+                                                                    <?php endforeach;?>
                                                                 </div>
                                                             </div>
 
@@ -228,7 +183,6 @@ get_template_part(
                                         $esimok_mo_ta = $esimok_item['esimok_mo_ta'];
                                         $esimok_ket_noi = $esimok_item['esimok_ket_noi'];
                                         $esimok_link_popup = $esimok_item['esimok_link_popup'];   
-                                        
                                     ?>
                                     <div class="item-esim">
                                         <div class="item-esim-info">
@@ -259,14 +213,13 @@ get_template_part(
                                                     ?>
                                                 </ul>
                                             </div>
-
                                             <div class="plan">
                                                 <button type="button" class="btn btn-primary plan-details"
-                                                    data-bs-toggle="modal" data-bs-target="#myModal_1">
+                                                    data-bs-toggle="modal" data-bs-target="#<?php echo $esimok_link_popup->post_name;?>">
                                                     Plan details
                                                 </button>
                                                 <!-- The Modal -->
-                                                <div class="modal" id="myModal_1">
+                                                <div class="modal" id="<?php echo $esimok_link_popup->post_name;?>">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
 
@@ -276,75 +229,30 @@ get_template_part(
                                                                 <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal"></button>
                                                             </div>
-
                                                             <!-- Modal body -->
                                                             <div class="modal-body">
-                                                                <h5 class="name-services">Countries covered by this plan
+                                                                <h5 class="name-services">
+                                                                <?php echo $esimok_link_popup->post_content;?>
                                                                 </h5>
+                                                                
                                                                 <div class="list-country">
+                                                                    <?php
+                                                                        $post_id_link_modal = $esimok_link_popup->ID;
+                                                                        $selected_countries = get_field('template_esim_country', $post_id_link_modal); 
+                                                                        
+                                                                        foreach ($selected_countries as $term_link) :
+                                                                            $term = get_term($term_link, 'esimok_categories');
+                                                                            $category_image = get_field('esimok_image_category', 'esimok_categories_' . $term->term_id);
+    
+                                                                    ?>
                                                                     <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/vie.png"
-                                                                                alt="Vietnam">
-                                                                            <h3 class="item-title">Vietnam</h3>
+                                                                        <a href="<?php echo get_term_link($term)?>">
+                                                                            <img src="<?php echo $category_image?>"
+                                                                                alt="<?php echo $term->name;?>">
+                                                                            <h3 class="item-title"><?php echo $term->name;?></h3>
                                                                         </a>
                                                                     </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/jpn.png"
-                                                                                alt="Japan">
-                                                                            <h3 class="item-title">Japan</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/korea.png"
-                                                                                alt="South Korean">
-                                                                            <h3 class="item-title">South Korean</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/china.png"
-                                                                                alt="China">
-                                                                            <h3 class="item-title">China</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/china.png"
-                                                                                alt="China">
-                                                                            <h3 class="item-title">China</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/vie.png"
-                                                                                alt="Vietnam">
-                                                                            <h3 class="item-title">Vietnam</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/jpn.png"
-                                                                                alt="Japan">
-                                                                            <h3 class="item-title">Japan</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/korea.png"
-                                                                                alt="South Korean">
-                                                                            <h3 class="item-title">South Korean</h3>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="item-country">
-                                                                        <a href="../html/country.html">
-                                                                            <img src="../html/assets/images/china.png"
-                                                                                alt="China">
-                                                                            <h3 class="item-title">China</h3>
-                                                                        </a>
-                                                                    </div>
+                                                                    <?php endforeach;?>
                                                                 </div>
                                                             </div>
 
@@ -356,7 +264,8 @@ get_template_part(
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>            
+                                            
 
                                         </div>
                                     </div>
@@ -371,6 +280,10 @@ get_template_part(
             </div>
         </div>
     </section>
+    <div class="esim-single-blog" style="background:#FAFAFA;padding-top:50px;">
+        <?php get_template_part('template-parts/content/template-blog');?>
+    </div>
+
 </div>
 
 

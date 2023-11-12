@@ -1,10 +1,11 @@
 <?php
-if (!defined('ABSPATH')) exit; // Exit if accessed directly.
+if (!defined('ABSPATH'))
+	exit; // Exit if accessed directly.
 
 /*
  * Theme Enqueue Scripts
  */
-if (!class_exists('Esimok_Enqueue_Scripts')) :
+if (!class_exists('Esimok_Enqueue_Scripts')):
 	class Esimok_Enqueue_Scripts
 	{
 		/*
@@ -48,14 +49,14 @@ if (!class_exists('Esimok_Enqueue_Scripts')) :
 		 * Constructor
 		 */
 		public function __construct()
-		{	
+		{
 			add_action('init', array($this, 'front_end_deregister_enqueue_assets'));
 
 			add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'), 1);
-            add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'), 5);
+			add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'), 5);
 
-            add_action('wp_enqueue_scripts', array($this, 'register_scripts'), 10);
-            add_action('admin_enqueue_scripts', array($this, 'admin_style'), 1);
+			add_action('wp_enqueue_scripts', array($this, 'register_scripts'), 10);
+			add_action('admin_enqueue_scripts', array($this, 'admin_style'), 1);
 
 		}
 
@@ -63,7 +64,7 @@ if (!class_exists('Esimok_Enqueue_Scripts')) :
 		 * Enqueue Styles Admin
 		 */
 		public function admin_style()
-		{	
+		{
 			wp_enqueue_style('esimok-style-admin', ESIMOK_THEME_URL . 'assets/css/style-admin.css', false, ESIMOK_THEME_VERSION, 'all');
 		}
 
@@ -71,21 +72,21 @@ if (!class_exists('Esimok_Enqueue_Scripts')) :
 		 * Enqueue Styles
 		 */
 		public function enqueue_styles()
-		{	
+		{
 			wp_enqueue_style('esimok-bootstrap', ESIMOK_THEME_URL . 'assets/css/bootstrap.min.css', false, ESIMOK_THEME_VERSION, 'all');
 			// Google Fonts Default
 			wp_enqueue_style('esimok-vn-fonts', $this->google_fonts(), array(), null);
 			wp_enqueue_style('esimok-typography', ESIMOK_THEME_URL . 'assets/css/typography/typography.css', false, ESIMOK_THEME_VERSION, 'all');
 
 		}
-		
+
 		/*
 		 * Enqueue Scripts
 		 * true => FOOTER
 		 * false => HEADER
 		 */
 		public function enqueue_scripts()
-		{	
+		{
 			wp_enqueue_script('esimok-third-party-jquery', ESIMOK_THEME_URL . 'assets/js/jquery.min.js', false, ESIMOK_THEME_VERSION, false);
 			wp_enqueue_script('esimok-bootstrap-min', ESIMOK_THEME_URL . 'assets/js/bootstrap.min.js', false, '5.1.3', false);
 			wp_enqueue_script('esimok-third-party-bootstrap-bundle', ESIMOK_THEME_URL . 'assets/js/bootstrap.bundle.min.js', false, '5.1.3', false);
@@ -114,15 +115,47 @@ if (!class_exists('Esimok_Enqueue_Scripts')) :
 			wp_register_style('esimok-component-banner-home', ESIMOK_THEME_URL . 'assets/css/components/banner-home.css', false, '2.3.4', 'all');
 			wp_register_style('esimok-component-taxonomy-esim', ESIMOK_THEME_URL . 'assets/css/components/taxonomy-esim.css', false, '2.3.4', 'all');
 			wp_register_style('esimok-component-single-esim', ESIMOK_THEME_URL . 'assets/css/components/single-esimok.css', false, '2.3.4', 'all');
+			wp_register_style('esimok-icon-moon', ESIMOK_THEME_URL . '/assets/font/icomoon/style.css', false, ESIMOK_THEME_VERSION, 'all');
+			wp_register_style('esimok-datatables', ESIMOK_THEME_URL . '/assets/css/components/datatables.min.css', false, ESIMOK_THEME_VERSION, 'all');
+			wp_register_style('esimok-nouislider', ESIMOK_THEME_URL . '/assets/css/components/nouislider.min.css', false, ESIMOK_THEME_VERSION, 'all');
 
 			/*
 			 * Regiter: scripts
 			 */
 			// Components
-			wp_register_script('esimok-third-party-owl-carousel', ESIMOK_THEME_URL . 'assets/js/owl.carousel.min.js', false, '2.3.4', true);			
+			wp_register_script('esimok-third-party-owl-carousel', ESIMOK_THEME_URL . 'assets/js/owl.carousel.min.js', false, '2.3.4', true);
 			wp_register_script('esimok-js-carosel', ESIMOK_THEME_URL . 'assets/js/custom-carosel.js', false, ESIMOK_THEME_VERSION, 'all');
+			wp_register_script('esimok-js-script', ESIMOK_THEME_URL . 'assets/js/custom-script.js', false, ESIMOK_THEME_VERSION, 'all');
+			wp_register_script('esimok-js-datatables', ESIMOK_THEME_URL . 'assets/js/datatables.min.js', false, ESIMOK_THEME_VERSION, 'all');
+			wp_register_script('esimok-js-nouislider', ESIMOK_THEME_URL . 'assets/js/nouislider.min.js', false, ESIMOK_THEME_VERSION, 'all');
+			wp_register_script('esimok-js-wNumb', ESIMOK_THEME_URL . 'assets/js/wNumb.min.js', false, ESIMOK_THEME_VERSION, 'all');
+			wp_localize_script(
+				'esimok-js-script',
+				'esimok_vars',
+				array(
+					'ajax_url' => admin_url('admin-ajax.php'),
+				)
+			);
+
+			if (is_tax('esimok_categories')) {
+				// Load các stylesheet
+				wp_enqueue_style('esimok-component-banner-home');
+				wp_enqueue_style('esimok-component-taxonomy-esim');
+				wp_enqueue_style('esimok-third-party-owl-carousel');
+				wp_enqueue_style('esimok-icon-moon');
+				wp_enqueue_style('esimok-datatables');
+				wp_enqueue_style('esimok-nouislider');
 		
-		}	
+				// Load các script
+				wp_enqueue_script('esimok-third-party-owl-carousel');
+				wp_enqueue_script('esimok-js-carosel');
+				wp_enqueue_script('esimok-js-script');
+				wp_enqueue_script('esimok-js-datatables');
+				wp_enqueue_script('esimok-js-nouislider');
+				wp_enqueue_script('esimok-js-wNumb');
+			}
+
+		}
 
 		public static function front_end_deregister_enqueue_assets()
 		{
@@ -169,14 +202,15 @@ if (!class_exists('Esimok_Enqueue_Scripts')) :
 		 * Hook: styles
 		 *
 		 * @author tungnt (tungnt@vietnamdiscovery.com)
-     	 * @since 2023-07-19
+		 * @since 2023-07-19
 		 * 
 		 * @package Wowcher
 		 * @version 1.0.3
 		 */
 		public static function hook_styles($file_name = '', $type = 'components')
 		{
-			if ($file_name == '' || !in_array($type, ['components', 'shortcodes'])) return;
+			if ($file_name == '' || !in_array($type, ['components', 'shortcodes']))
+				return;
 
 			if ($type == 'components') {
 				// Load CSS
@@ -192,34 +226,35 @@ if (!class_exists('Esimok_Enqueue_Scripts')) :
 		}
 
 		/**
-         * Register Google fonts.
-         *
-         * @return string Google fonts URL for the theme.
-         * value : 'londrina-solid' => 'Londrina+Solid:300,400,900',
-         * @since 2.4.0
-         */
-        public function google_fonts()
-        {
-            $google_fonts = apply_filters('seafarertran_google_font_families',
-                [
-                    'Inter' => 'Inter:400,500,600,700'
-                ]
-            );
+		 * Register Google fonts.
+		 *
+		 * @return string Google fonts URL for the theme.
+		 * value : 'londrina-solid' => 'Londrina+Solid:300,400,900',
+		 * @since 2.4.0
+		 */
+		public function google_fonts()
+		{
+			$google_fonts = apply_filters(
+				'seafarertran_google_font_families',
+				[
+					'Inter' => 'Inter:400,500,600,700'
+				]
+			);
 
-            if (count($google_fonts) <= 0) {
-                return false;
-            }
+			if (count($google_fonts) <= 0) {
+				return false;
+			}
 
-            $query_args = array(
-                'family' => implode('|', $google_fonts),
-                'subset' => rawurlencode('latin,latin-ext'),
-                'display' => 'swap',
-            );
+			$query_args = array(
+				'family' => implode('|', $google_fonts),
+				'subset' => rawurlencode('latin,latin-ext'),
+				'display' => 'swap',
+			);
 
-            $fonts_url = add_query_arg($query_args, '//fonts.googleapis.com/css');
+			$fonts_url = add_query_arg($query_args, '//fonts.googleapis.com/css');
 
-            return $fonts_url;
-        }
+			return $fonts_url;
+		}
 	}
 
 	/*
