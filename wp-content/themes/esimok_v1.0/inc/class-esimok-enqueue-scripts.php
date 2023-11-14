@@ -5,7 +5,7 @@ if (!defined('ABSPATH'))
 /*
  * Theme Enqueue Scripts
  */
-if (!class_exists('Esimok_Enqueue_Scripts')) :
+if (!class_exists('Esimok_Enqueue_Scripts')):
 	class Esimok_Enqueue_Scripts
 	{
 		/*
@@ -139,7 +139,7 @@ if (!class_exists('Esimok_Enqueue_Scripts')) :
 
 			wp_enqueue_style('esimok-component-header');
 			wp_enqueue_style('esimok-component-footer');
-			
+
 			if (is_tax('esimok_categories')) {
 				// Load các stylesheet
 				wp_enqueue_style('esimok-component-banner-home');
@@ -162,6 +162,16 @@ if (!class_exists('Esimok_Enqueue_Scripts')) :
 
 			wp_enqueue_style('esimok-component-banner-home');
 			wp_enqueue_style('esimok-component-blog');
+			// Load style home
+			wp_enqueue_style('esimok-component-home');
+
+			// Load list blog
+			wp_enqueue_style('esimok-component-slide-blog');
+			wp_enqueue_style('esimok-third-party-owl-carousel');
+				// Load JS blog
+			wp_enqueue_script('esimok-third-party-owl-carousel');
+			wp_enqueue_script('esimok-js-carosel');
+			// End load list Blog
 		}
 
 		public static function front_end_deregister_enqueue_assets()

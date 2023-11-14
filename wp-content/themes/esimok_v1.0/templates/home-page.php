@@ -10,8 +10,7 @@
  */
 
 get_header();
-// Load CSS
-wp_enqueue_style('esimok-component-home');
+
 global $post;
 
 ?>

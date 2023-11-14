@@ -85,13 +85,3 @@
     endif;
     ?>
 </section>
-
-<?php
-
-wp_enqueue_style('esimok-component-slide-blog');
-wp_enqueue_style('esimok-third-party-owl-carousel');
-
-// Load JS
-wp_enqueue_script('esimok-third-party-owl-carousel');
-wp_enqueue_script('esimok-js-carosel');
-?>
