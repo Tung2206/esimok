@@ -93,5 +93,3 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly.
                 </div>
             </div>
         </header>
-
-        <?php wp_enqueue_style('esimok-component-header'); ?>

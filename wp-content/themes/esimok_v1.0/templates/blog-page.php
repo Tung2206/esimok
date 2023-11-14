@@ -110,7 +110,4 @@ get_template_part(
 </div>
 
 <?php
-// Load CSS
-wp_enqueue_style('esimok-component-blog');
-
 get_footer(); ?>

@@ -11,21 +11,38 @@ add_action('wp_ajax_nopriv_load_products', 'load_products');
 
 function load_products()
 {   
-
     $minValue = isset($_POST['minValue']) ? intval($_POST['minValue']) : 0;
     $maxValue = isset($_POST['maxValue']) ? intval($_POST['maxValue']) : 30;
-
-        
-    $esimok_info = get_field('esimok_thong_tin_goi_cuoc');
-    $provider = $esimok_info['esimok_provider'];
-    $plan_name = $esimok_info['esimok_plan_name'];
-    $size = $esimok_info['esimok_size'];
-    $validity = $esimok_info['esimok_validity'];
-    $price_gb = $esimok_info['esimok_price_gb'];
-    $price = $esimok_info['esimok_price'];
-    $goi_data = $esimok_info['esimok_goi_data'];
-    $note = $esimok_info['esimok_note'];
+    $args = array(
+        'posts_per_page' => -1,
+        'post_type' => 'esimok',
+        'post_status' => 'publish',
+        // Thêm meta_query để lọc theo giá trị ngày
+        'meta_query' => array(
+          array(
+            'key' => 'esimok_thong_tin_goi_cuoc_esimok_validity', // Đặt key của meta field
+            'value' => array($minValue, $maxValue),
+            'type' => 'NUMERIC',
+            'compare' => 'BETWEEN',
+          ),
+        ),
+      );    
+    $all_posts = new WP_Query($args);
     $html ='';
+
+    if ($all_posts->have_posts()):
+        while ($all_posts->have_posts()):
+            $all_posts->the_post();
+            $esimok_info = get_field('esimok_thong_tin_goi_cuoc');
+            $provider = $esimok_info['esimok_provider'];
+            $plan_name = $esimok_info['esimok_plan_name'];
+            $size = $esimok_info['esimok_size'];
+            $validity = $esimok_info['esimok_validity'];
+            $price_gb = $esimok_info['esimok_price_gb'];
+            $price = $esimok_info['esimok_price'];
+            $goi_data = $esimok_info['esimok_goi_data'];
+            $note = $esimok_info['esimok_note'];
+    
     $html .='<a href="'.get_the_permalink(get_the_ID()).'" class="offers-list-row product-row">';
         $html .='<div class="offers-list-item-mobile">';
             $html .='<article class="product-list-data">';
@@ -49,7 +66,7 @@ function load_products()
                                 if ($data === 'Phone') :
                                     $html .='<li>
                                     <div class="list-data">
-                                        <div class="info">
+                                        <div class="info-table-data">
                                             <span class="icon-phone"></span>
                                             <div class="name-info-data">
                                                 <span>Phone number available</span>
@@ -61,7 +78,7 @@ function load_products()
                                 if ($data === 'Voice') :
                                     $html .='<li>
                                     <div class="list-data">
-                                        <div class="info">
+                                        <div class="info-table-data">
                                             <span class="icon-voice"></span>
                                             <div class="name-info-data">
                                                 <span>Outgoing calls included</span>
@@ -73,7 +90,7 @@ function load_products()
                                 if ($data === 'Globe') :
                                     $html .='<li>
                                     <div class="list-data">
-                                        <div class="info">
+                                        <div class="info-table-data">
                                             <span class="icon-global"></span>
                                             <div class="name-info-data">
                                                 <span> Low latency</span>
@@ -85,7 +102,7 @@ function load_products()
                                 if ($data === 'Callendar'):
                                     $html .='<li>
                                     <div class="list-data">
-                                        <div class="info">
+                                        <div class="info-table-data">
                                             <span class="icon-calendar"></span>
                                             <div class="name-info-data">
                                                 <span>Subscription based plan</span>
@@ -98,7 +115,7 @@ function load_products()
                                 if (!empty($note)) :
                                     $html .='<li>
                                     <div class="list-data">
-                                        <div class="info">
+                                        <div class="info-table-data">
                                             <span class="icon-note"></span>
                                             <div class="name-info-data">
                                                 <span>'.$note.'</span>
@@ -131,7 +148,7 @@ function load_products()
                     if ($data === 'Phone') :
                         $html .='<li>
                         <div class="list-data">
-                            <div class="info">
+                            <div class="info-table-data">
                                 <span class="icon-phone"></span>
                                 <div class="name-info-data">
                                     <span>Phone number available</span>
@@ -143,7 +160,7 @@ function load_products()
                     if ($data === 'Voice') :
                         $html .='<li>
                         <div class="list-data">
-                            <div class="info">
+                            <div class="info-table-data">
                                 <span class="icon-voice"></span>
                                 <div class="name-info-data">
                                     <span>Outgoing calls included</span>
@@ -155,7 +172,7 @@ function load_products()
                     if ($data === 'Globe') :
                         $html .='<li>
                         <div class="list-data">
-                            <div class="info">
+                            <div class="info-table-data">
                                 <span class="icon-global"></span>
                                 <div class="name-info-data">
                                     <span> Low latency</span>
@@ -167,7 +184,7 @@ function load_products()
                     if ($data === 'Callendar'):
                         $html .='<li>
                         <div class="list-data">
-                            <div class="info">
+                            <div class="info-table-data">
                                 <span class="icon-calendar"></span>
                                 <div class="name-info-data">
                                     <span>Subscription based plan</span>
@@ -180,7 +197,7 @@ function load_products()
                     if (!empty($note)) :
                         $html .='<li>
                         <div class="list-data">
-                            <div class="info">
+                            <div class="info-table-data">
                                 <span class="icon-note"></span>
                                 <div class="name-info-data">
                                     <span>'.$note.'</span>
@@ -205,7 +222,11 @@ function load_products()
                 </div>';
 
     $html .='</a>';
-
+    endwhile;
+    wp_reset_postdata();
+    else:
+    $html .= '<p>No products found.</p>';
+    endif;
     echo  $html;
     
     wp_die();

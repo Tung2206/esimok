@@ -80,7 +80,6 @@ global $post;
 <?php
 
 
-wp_enqueue_style('esimok-component-banner-home');
 
 
 get_footer(); ?>

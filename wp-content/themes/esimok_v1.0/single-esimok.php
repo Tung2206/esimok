@@ -288,8 +288,5 @@ get_template_part(
 
 
 <?php 
-wp_enqueue_style('esimok-component-single-esim');
-
 get_footer(); 
-
 ?>

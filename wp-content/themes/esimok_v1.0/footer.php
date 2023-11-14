@@ -139,7 +139,6 @@
 </footer>
 </div> <!-- end wrapper -->
 <?php
-wp_enqueue_style('esimok-component-footer');
 wp_footer(); ?>
 
 </body>

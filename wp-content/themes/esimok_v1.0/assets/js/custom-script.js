@@ -61,8 +61,10 @@
     });
 
     function loadData(minValue1, maxValue1) {
+
+      var startDate = someConversionFunction(minValue1);
+      var endDate = someConversionFunction(maxValue1);
       var $productContainer = $('.product-row-container .offers-list');
-      var  $term_id = 11;
       var loading = false;
       // Thực hiện Ajax call để lấy dữ liệu sản phẩm
       if (loading) {
@@ -74,12 +76,11 @@
         type: 'POST',
         data: {
           action: 'load_products',
-          term_id : $term_id,
-          minValue: minValue1,
-          maxValue: maxValue1,
+          startDate: startDate,
+          endDate: endDate,
         },
-        success: function (response) {
-          $productContainer.html(response);
+        success: function (data) {
+          $productContainer.html(data);
           loading = false;
         },
         error: function (errorThrown) {

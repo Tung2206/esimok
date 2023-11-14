@@ -5,7 +5,7 @@ if (!defined('ABSPATH'))
 /*
  * Theme Enqueue Scripts
  */
-if (!class_exists('Esimok_Enqueue_Scripts')):
+if (!class_exists('Esimok_Enqueue_Scripts')) :
 	class Esimok_Enqueue_Scripts
 	{
 		/*
@@ -57,7 +57,6 @@ if (!class_exists('Esimok_Enqueue_Scripts')):
 
 			add_action('wp_enqueue_scripts', array($this, 'register_scripts'), 10);
 			add_action('admin_enqueue_scripts', array($this, 'admin_style'), 1);
-
 		}
 
 		/*
@@ -77,7 +76,6 @@ if (!class_exists('Esimok_Enqueue_Scripts')):
 			// Google Fonts Default
 			wp_enqueue_style('esimok-vn-fonts', $this->google_fonts(), array(), null);
 			wp_enqueue_style('esimok-typography', ESIMOK_THEME_URL . 'assets/css/typography/typography.css', false, ESIMOK_THEME_VERSION, 'all');
-
 		}
 
 		/*
@@ -137,6 +135,11 @@ if (!class_exists('Esimok_Enqueue_Scripts')):
 				)
 			);
 
+
+
+			wp_enqueue_style('esimok-component-header');
+			wp_enqueue_style('esimok-component-footer');
+			
 			if (is_tax('esimok_categories')) {
 				// Load các stylesheet
 				wp_enqueue_style('esimok-component-banner-home');
@@ -145,7 +148,7 @@ if (!class_exists('Esimok_Enqueue_Scripts')):
 				wp_enqueue_style('esimok-icon-moon');
 				wp_enqueue_style('esimok-datatables');
 				wp_enqueue_style('esimok-nouislider');
-		
+
 				// Load các script
 				wp_enqueue_script('esimok-third-party-owl-carousel');
 				wp_enqueue_script('esimok-js-carosel');
@@ -153,8 +156,12 @@ if (!class_exists('Esimok_Enqueue_Scripts')):
 				wp_enqueue_script('esimok-js-datatables');
 				wp_enqueue_script('esimok-js-nouislider');
 				wp_enqueue_script('esimok-js-wNumb');
+			} else if (is_single()) {
+				wp_enqueue_style('esimok-component-single-esim');
 			}
 
+			wp_enqueue_style('esimok-component-banner-home');
+			wp_enqueue_style('esimok-component-blog');
 		}
 
 		public static function front_end_deregister_enqueue_assets()
