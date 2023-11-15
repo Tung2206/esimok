@@ -127,6 +127,8 @@ if (!class_exists('Esimok_Enqueue_Scripts')):
 			wp_register_script('esimok-js-datatables', ESIMOK_THEME_URL . 'assets/js/datatables.min.js', false, ESIMOK_THEME_VERSION, 'all');
 			wp_register_script('esimok-js-nouislider', ESIMOK_THEME_URL . 'assets/js/nouislider.min.js', false, ESIMOK_THEME_VERSION, 'all');
 			wp_register_script('esimok-js-wNumb', ESIMOK_THEME_URL . 'assets/js/wNumb.min.js', false, ESIMOK_THEME_VERSION, 'all');
+			
+			// Ajax
 			wp_localize_script(
 				'esimok-js-script',
 				'esimok_vars',
@@ -135,7 +137,14 @@ if (!class_exists('Esimok_Enqueue_Scripts')):
 				)
 			);
 
+			// React
+            wp_register_script('gigago-vn-third-party-react', ESIMOK_THEME_URL . 'assets/js/libs/react.min.js', false, '15.4.2', true);
+            wp_register_script('gigago-vn-third-party-react-dom', ESIMOK_THEME_URL . 'assets/js/libs/react-dom.min.js', false, '15.4.2', true);
+            wp_register_script('gigago-vn-third-party-react-babel', ESIMOK_THEME_URL . 'assets/js/libs/babel.min.js', false, '6.26.0', true);
+            wp_register_script('gigago-vn-third-party-react-autosuggest', ESIMOK_THEME_URL . 'assets/js/libs/autosuggest.min.js', false, '9.0.0', true);
 
+			// Listing
+            wp_register_script('gigago-vn-listing-data-esim', ESIMOK_THEME_URL . 'assets/js/listing/data-esim.js', false, ESIMOK_THEME_VERSION, true);
 
 			wp_enqueue_style('esimok-component-header');
 			wp_enqueue_style('esimok-component-footer');

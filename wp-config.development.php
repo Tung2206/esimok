@@ -51,5 +51,5 @@ define('WP_DEBUG', false);
 // define('FS_METHOD', 'direct');
 
 // không cho phép upgrade
-// define( 'DISALLOW_FILE_MODS', true );
-// define( 'DISALLOW_FILE_EDIT', true );
+define( 'DISALLOW_FILE_MODS', true );
+define( 'DISALLOW_FILE_EDIT', true );

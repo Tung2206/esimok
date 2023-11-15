@@ -62,8 +62,6 @@
 
     function loadData(minValue1, maxValue1) {
 
-      var startDate = someConversionFunction(minValue1);
-      var endDate = someConversionFunction(maxValue1);
       var $productContainer = $('.product-row-container .offers-list');
       var loading = false;
       // Thực hiện Ajax call để lấy dữ liệu sản phẩm
@@ -76,8 +74,8 @@
         type: 'POST',
         data: {
           action: 'load_products',
-          startDate: startDate,
-          endDate: endDate,
+          minValue: minValue1,
+          maxValue: maxValue1,
         },
         success: function (data) {
           $productContainer.html(data);

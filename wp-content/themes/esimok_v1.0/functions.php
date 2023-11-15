@@ -38,6 +38,11 @@ require_once ESIMOK_THEME_DIR . 'inc/core/class-esimok-theme-options.php';
 require_once ESIMOK_THEME_DIR . 'inc/class-esimok-post-types.php';
 
 /*
+ * Compatibility
+ */
+require_once ESIMOK_THEME_DIR . 'inc/builder/class-esimok-builder-loader.php';
+
+/*
  * Functions and definitions.
  */
 require_once ESIMOK_THEME_DIR . 'inc/class-esimok-after-setup-theme.php';

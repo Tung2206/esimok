@@ -29,7 +29,36 @@ function load_products()
       );    
     $all_posts = new WP_Query($args);
     $html ='';
-
+    $html .= '<header class="offers-list-header">
+                <div class="cell"></div>
+                <div class="offers-list-item cell">
+                    <span>PROVIDER </span>
+                </div>
+                <div class="offers-list-item cell">
+                    <span>PLAN NAME</span>
+                </div>
+                <div class="offers-list-item cell">
+                    <span></span>
+                </div>
+                <div class="offers-list-item cell" style="text-align: center;">
+                    <span>SIZE</span>
+                </div>
+                <div class="offers-list-item cell" style="text-align: center;">
+                    <span>VALIDITY</span>
+                </div>
+                <div class="offers-list-item cell" style="text-align: center;">
+                    <span>PRICE/GB</span>
+                </div>
+                <div class="offers-list-item cell" style="text-align: center;">
+                    <span>PRICE</span>
+                </div>
+                <div class="offers-list-item cell">
+                    <span></span>
+                </div>
+                <div class="offers-list-item cell">
+                    <span></span>
+                </div>
+            </header>';  
     if ($all_posts->have_posts()):
         while ($all_posts->have_posts()):
             $all_posts->the_post();

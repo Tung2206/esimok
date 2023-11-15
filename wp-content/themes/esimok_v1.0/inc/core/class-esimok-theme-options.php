@@ -97,7 +97,7 @@ if (!class_exists('Esimok_Theme_Options')) :
 		 */
 		public static function get_db_options()
 		{
-			self::$db_options_no_defaults = get_option(VISANA_THEME_SETTINGS);
+			self::$db_options_no_defaults = get_option(ESIMOK_THEME_SETTINGS);
 			return self::$db_options_no_defaults;
 		}
 	}
