@@ -39,7 +39,7 @@ if (!class_exists('Esimok_Builder_Loader')) :
             /*
              * Builder Core Files
              */
-            require_once ESIMOK_THEME_DIR . 'inc/core/builder/class-gigagovn-builder-helper.php';
+            require_once ESIMOK_THEME_DIR . 'inc/core/class-esimok-builder-helper.php';
 
         }
     }
