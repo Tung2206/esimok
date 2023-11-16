@@ -177,6 +177,7 @@
     });
 
     // Load slider range
+    
     // Thêm sự kiện cho slider 1
     rangeSlider1.noUiSlider.on('update', function (values, handle) {
       document.getElementById('slider-range-value1').innerHTML = values[0];
@@ -207,10 +208,32 @@
       loadData('esimok_price', values);
     });
 
-    function loadData(type, values) {
-      var min = values[0];
-      var max = values[1];
+    document.querySelector('.clear').addEventListener('click', function () {
+      // Reset giá trị của các slider
+      rangeSlider2.noUiSlider.reset();
+      rangeSlider3.noUiSlider.reset();
+      rangeSlider4.noUiSlider.reset();
 
+      // Reset giá trị của các checkbox
+      document.getElementById('flexSwitchCheckDefault1').checked = false;
+      document.getElementById('flexSwitchCheckDefault2').checked = false;
+      document.getElementById('flexSwitchCheckDefault3').checked = false;
+      document.getElementById('flexSwitchCheckDefault4').checked = false;
+
+      // Xóa giá trị của các mục hiển thị giá trị
+      document.getElementById('gb-value1').innerHTML = '';
+      document.getElementById('gb-value2').innerHTML = '';
+      document.getElementById('slider-date-value1').innerHTML = '';
+      document.getElementById('slider-date-value2').innerHTML = '';
+      document.getElementById('price-value1').innerHTML = '';
+      document.getElementById('price-value2').innerHTML = '';
+
+      // Thực hiện Ajax call để tải lại danh sách sản phẩm ban đầu
+      loadData();
+    });
+
+
+    function loadData(type, values) {
       var $productContainer = $('.product-row-container .offers-list');
       var loading = false;
 
@@ -222,10 +245,14 @@
 
       var postData = {
         action: 'load_products',
-        type: type,
-        min: min,
-        max: max,
       };
+
+      // Thêm tham số vào dữ liệu Ajax nếu có
+      if (type && values) {
+        postData.type = type;
+        postData.min = values[0];
+        postData.max = values[1];
+      }
 
       $.ajax({
         url: esimok_vars.ajax_url,
@@ -240,6 +267,7 @@
         }
       });
     }
+
 
 
 
