@@ -11,23 +11,27 @@ add_action('wp_ajax_nopriv_load_products', 'load_products');
 
 function load_products()
 {   
-    $minValue = isset($_POST['minValue']) ? intval($_POST['minValue']) : 0;
-    $maxValue = isset($_POST['maxValue']) ? intval($_POST['maxValue']) : 30;
+    $type = isset($_POST['type']) ? sanitize_text_field($_POST['type']) : '';
+    $min = isset($_POST['min']) ? intval($_POST['min']) : 0;
+    $max = isset($_POST['max']) ? intval($_POST['max']) : 0;
     $args = array(
         'posts_per_page' => -1,
         'post_type' => 'esimok',
         'post_status' => 'publish',
-        // Thêm meta_query để lọc theo giá trị ngày
-        'meta_query' => array(
-          array(
-            'key' => 'esimok_thong_tin_goi_cuoc_esimok_validity', // Đặt key của meta field
-            'value' => array($minValue, $maxValue),
+        'meta_query' => array(),
+    );
+    
+    if ($type && ($min || $max)) {
+        $args['meta_query'][] = array(
+            'key' => 'esimok_thong_tin_goi_cuoc_' . $type,
+            'value' => array($min, $max),
             'type' => 'NUMERIC',
             'compare' => 'BETWEEN',
-          ),
-        ),
-      );    
+        );
+    }
+    
     $all_posts = new WP_Query($args);
+
     $html ='';
     $html .= '<header class="offers-list-header">
                 <div class="cell"></div>

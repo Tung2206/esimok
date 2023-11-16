@@ -52,42 +52,6 @@
       document.getElementById('slider-range-value2').innerHTML = values[1];
     });
 
-    // Load slider range
-    rangeSlider1.noUiSlider.on('change', function (values, handle) {
-      // Gọi hàm Ajax khi giá trị slider thay đổi
-      var minValue1 = values[0];
-      var maxValue1 = values[1];
-      loadData(minValue1, maxValue1);
-    });
-
-    function loadData(minValue1, maxValue1) {
-
-      var $productContainer = $('.product-row-container .offers-list');
-      var loading = false;
-      // Thực hiện Ajax call để lấy dữ liệu sản phẩm
-      if (loading) {
-        return;
-      }
-      loading = true;
-      $.ajax({
-        url: esimok_vars.ajax_url, // Thay thế bằng đường dẫn của bạn
-        type: 'POST',
-        data: {
-          action: 'load_products',
-          minValue: minValue1,
-          maxValue: maxValue1,
-        },
-        success: function (data) {
-          $productContainer.html(data);
-          loading = false;
-        },
-        error: function (errorThrown) {
-          console.log(errorThrown);
-        }
-      });
-    }
-
-
     // Slider 2
     var rangeSlider2 = document.getElementById('slider-range2');
     var gbFormat = wNumb({
@@ -212,7 +176,99 @@
       sortProducts(selectedValue);
     });
 
+    // Load slider range
+    // Thêm sự kiện cho slider 1
+    rangeSlider1.noUiSlider.on('update', function (values, handle) {
+      document.getElementById('slider-range-value1').innerHTML = values[0];
+      document.getElementById('slider-range-value2').innerHTML = values[1];
 
+      // Thực hiện Ajax call để tải dữ liệu khi giá trị slider thay đổi
+      loadData('esimok_validity', values);
+    });
+
+    // Thêm sự kiện cho slider 2
+    rangeSlider2.noUiSlider.on('update', function (values, handle) {
+      document.getElementById('gb-value1').innerHTML = values[0];
+      document.getElementById('gb-value2').innerHTML = values[1];
+      loadData('esimok_size', values);
+    });
+
+    // Thêm sự kiện cho slider 3
+    rangeSlider3.noUiSlider.on('update', function (values, handle) {
+      document.getElementById('slider-date-value1').innerHTML = values[0];
+      document.getElementById('slider-date-value2').innerHTML = values[1];
+      loadData('esimok_validity', values);
+    });
+
+    // Thêm sự kiện cho slider 4
+    rangeSlider4.noUiSlider.on('update', function (values, handle) {
+      document.getElementById('price-value1').innerHTML = values[0];
+      document.getElementById('price-value2').innerHTML = values[1];
+      loadData('esimok_price', values);
+    });
+
+    function loadData(type, values) {
+      var min = values[0];
+      var max = values[1];
+
+      var $productContainer = $('.product-row-container .offers-list');
+      var loading = false;
+
+      // Thực hiện Ajax call để lấy dữ liệu sản phẩm
+      if (loading) {
+        return;
+      }
+      loading = true;
+
+      var postData = {
+        action: 'load_products',
+        type: type,
+        min: min,
+        max: max,
+      };
+
+      $.ajax({
+        url: esimok_vars.ajax_url,
+        type: 'POST',
+        data: postData,
+        success: function (data) {
+          $productContainer.html(data);
+          loading = false;
+        },
+        error: function (errorThrown) {
+          console.log(errorThrown);
+        }
+      });
+    }
+
+
+
+    // function loadData(minValue1, maxValue1) {
+
+    //   var $productContainer = $('.product-row-container .offers-list');
+    //   var loading = false;
+    //   // Thực hiện Ajax call để lấy dữ liệu sản phẩm
+    //   if (loading) {
+    //     return;
+    //   }
+    //   loading = true;
+    //   $.ajax({
+    //     url: esimok_vars.ajax_url, // Thay thế bằng đường dẫn của bạn
+    //     type: 'POST',
+    //     data: {
+    //       action: 'load_products',
+    //       minValue: minValue1,
+    //       maxValue: maxValue1,
+    //     },
+    //     success: function (data) {
+    //       $productContainer.html(data);
+    //       loading = false;
+    //     },
+    //     error: function (errorThrown) {
+    //       console.log(errorThrown);
+    //     }
+    //   });
+    // }
 
 
   });
