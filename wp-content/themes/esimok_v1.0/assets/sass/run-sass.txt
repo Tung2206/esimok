@@ -22,3 +22,4 @@ sass --no-source-map --watch 01-components/home.scss:../css/components/home.css 
 sass --no-source-map --watch 01-components/taxonomy-esim.scss:../css/components/taxonomy-esim.css --style compressed
 sass --no-source-map --watch 01-components/banner-home.scss:../css/components/banner-home.css --style compressed
 sass --no-source-map --watch 01-components/single-esimok.scss:../css/components/single-esimok.css --style compressed
+sass --no-source-map --watch 03-listing/esim-search.scss:../css/listing/esim-search.css --style compressed

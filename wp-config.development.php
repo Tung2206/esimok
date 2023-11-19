@@ -41,7 +41,7 @@ define('DB_HOST', 'localhost');
  */
 define('WP_DEBUG', false);
 // define('WP_DEBUG_DISPLAY', false);
-// define('WP_DEBUG_LOG', true);
+// define('WP_DEBUG_LOG', false);
 
 /*
  * Không cho phép tự ý cài đặt hoặc upgrade wordpress + themes + plugins

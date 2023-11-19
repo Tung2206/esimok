@@ -49,4 +49,5 @@ require_once ESIMOK_THEME_DIR . 'inc/class-esimok-after-setup-theme.php';
 require_once ESIMOK_THEME_DIR . 'inc/class-esimok-enqueue-scripts.php';
 require_once ESIMOK_THEME_DIR . 'inc/class-esimok-optimize-theme.php';
 require_once ESIMOK_THEME_DIR . 'inc/ajax.php';
+require_once ESIMOK_THEME_DIR . 'inc/class-gigagovn-cronjob.php';
 require_once ESIMOK_THEME_DIR . 'third-parties/BFI_Thumb.php';

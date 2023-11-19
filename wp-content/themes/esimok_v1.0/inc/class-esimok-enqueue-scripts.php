@@ -116,6 +116,7 @@ if (!class_exists('Esimok_Enqueue_Scripts')):
 			wp_register_style('esimok-icon-moon', ESIMOK_THEME_URL . '/assets/font/icomoon/style.css', false, ESIMOK_THEME_VERSION, 'all');
 			wp_register_style('esimok-datatables', ESIMOK_THEME_URL . '/assets/css/components/datatables.min.css', false, ESIMOK_THEME_VERSION, 'all');
 			wp_register_style('esimok-nouislider', ESIMOK_THEME_URL . '/assets/css/components/nouislider.min.css', false, ESIMOK_THEME_VERSION, 'all');
+			wp_register_style('gigago-vn-listing-esim-search', ESIMOK_THEME_URL . '/assets/css/listing/esim-search.css', false, ESIMOK_THEME_VERSION, 'all');
 
 			/*
 			 * Regiter: scripts
@@ -146,6 +147,8 @@ if (!class_exists('Esimok_Enqueue_Scripts')):
 			// Listing
             wp_register_script('gigago-vn-listing-data-esim', ESIMOK_THEME_URL . 'assets/js/listing/data-esim.js', false, ESIMOK_THEME_VERSION, true);
 
+
+			// style heaer-footer
 			wp_enqueue_style('esimok-component-header');
 			wp_enqueue_style('esimok-component-footer');
 

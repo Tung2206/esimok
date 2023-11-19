@@ -12,6 +12,13 @@
 <section class="blog">
     <?php
     $tags = wp_get_post_categories($post->ID);
+    $cat_name = '';
+
+    // Kiểm tra nếu $tags không trống và có phần tử
+    if (!empty($tags) && is_array($tags)) {
+        $cat_name = get_cat_name($tags[0]);
+    }
+
     $category_link = get_category_link(4);
     $args = array(
         'post_type'  => 'post',
@@ -46,7 +53,7 @@
                                                     $title_temp = get_the_title($post_in->ID);
                                                     $link_temp = get_the_permalink($post_in->ID);
                                                     $img = get_the_post_thumbnail_url($post_in->ID);
-                                                    $cat_name = get_cat_name($tags[0]);
+                                                    // $cat_name = get_cat_name($tags[0]);
                                             ?>
                                                     <div class="<?php echo ($my_query->post_count > 4) ? 'item' : 'item col-12 col-md-3'; ?>">
                                                         <div class="thumb">

@@ -40,7 +40,10 @@ if (!class_exists('Esimok_Builder_Loader')) :
              * Builder Core Files
              */
             require_once ESIMOK_THEME_DIR . 'inc/core/class-esimok-builder-helper.php';
-
+            /*
+             * Builder - Shortcodes
+             */
+            require_once ESIMOK_THEME_DIR . 'inc/builder/class-esimok-shortcode-esim-search.php';
         }
     }
 
